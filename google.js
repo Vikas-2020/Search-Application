@@ -7,8 +7,8 @@ let loader = document.querySelector(".loader");
 let micInput = document.querySelector("#mic");
 let allBtn = document.querySelectorAll(".button-container .button");
 
-const apiKey = "AIzaSyCH0zbNTYrwbBg2JFZVwCKTqpTA8RgFMxc";
-const cx = "053664ba4ac1a4447";
+const apiKey = "AIzaSyB6WtUughJpJCifhnZNVNfi062J4BSw4EU";
+const cx = "d2328ac8ca7674c47";
 
 async function fetchGoogleData(query) {
   if (query === "") {

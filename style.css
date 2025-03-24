@@ -563,57 +563,6 @@ pre {
     background-color: #454546;
 }
 
-
-/* .sidebar .new-chat-dark{
-    background-color:  #1E1F20;
-    border: 2px solid #2d2e2e;
-}
-
-.main{
-    background-color: #131314;
-}
-.main-container .card-dark{
-    background-color: #1e1f20;
-   
-}
-.main-container .card-dark p{
-    color: #e3e3e3;
-}
-.main-container .card-dark:hover{
-    background-color: #333537;
-}
-.main-container .card-dark img{
-    background-color: #252525;
-}
-.search-box-dark{
-    background-color: #1E1F20;
-}
-.search-box-dark input{
-    color: #dfdede;
-}
-
-.result-container-dark{
-    color: #969797 !important;
-}
-.title-div-dark , .title-div-dark a{
-    color: #868584;
-}
-
-.description-div-dark h2{
-    color: rgb(95, 95, 247);
-}
-
-.description-div-dark a:hover{
-    color: rgb(95, 95, 247);
-}
-
-.result-dark a{
-    color: #a6a8a8;
-}
-.title-dark , .dataAndTime-dark , .description-dark{
-    color: #6d6c6c;
-} */
-
 .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
