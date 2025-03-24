@@ -196,6 +196,7 @@ recognition.onerror = (event) => {
 };
 
 btn.addEventListener("click", () => fetchGoogleData(searchInput.value.trim()));
+googleBtn.addEventListener("click", () => fetchGoogleData(searchInput.value.trim()));
 
 // ✅ Clear cache when clicking "New Chat"
 document.querySelector(".new-chat").addEventListener("click", () => {
