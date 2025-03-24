@@ -137,3 +137,7 @@ document.querySelector(".new-chat").addEventListener("click", () => {
   localStorage.removeItem("geminiCache"); // Clear cached data
   location.reload();
 });
+
+btn.addEventListener("click", () =>{
+  window.speechSynthesis.cancel();
+})
