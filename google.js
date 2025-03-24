@@ -10,10 +10,28 @@ let allBtn = document.querySelectorAll(".button-container .button");
 const apiKey = "AIzaSyB6WtUughJpJCifhnZNVNfi062J4BSw4EU";
 const cx = "d2328ac8ca7674c47";
 
+// Load cache from localStorage when the page loads
+let googleCache = JSON.parse(localStorage.getItem("googleCache")) || {};
+
 async function fetchGoogleData(query) {
   if (query === "") {
     resultContainer.innerHTML = "";
     resultContainer.style.boxShadow = "none";
+    return;
+  }
+
+   // Check cache first
+   if (googleCache[query]) {
+    console.log("Fetching from cache...");
+
+    googleBtn.addEventListener("click", () => {
+      allBtn.forEach((btn, idx) => {
+        btn.classList.toggle("selectedBtn", idx === 0);
+      });
+      displayData(result.items);
+    });
+    
+    displayData(googleCache[query]);
     return;
   }
 
@@ -41,6 +59,10 @@ async function fetchGoogleData(query) {
     // Hide loader after fetching data
     loader.style.display = "none";
 
+     // Cache the result in memory and localStorage
+     googleCache[query] = result.items;
+     localStorage.setItem("googleCache", JSON.stringify(googleCache));
+
     googleBtn.addEventListener("click", () => {
       allBtn.forEach((btn, idx) => {
         btn.classList.toggle("selectedBtn", idx === 0);
@@ -53,10 +75,15 @@ async function fetchGoogleData(query) {
   } catch (error) {
     console.error("Error fetching data:", error);
     loader.style.display = "none"; // Hide loader on error
+    resultContainer.innerHTML = "";
   }
 }
 
 function displayData(result) {
+  if(!Array.isArray(result)){
+    resultContainer.innerHTML = `<p class="head">Google result not availabe please try angain later.</p>`;
+    return;
+  }
   resultContainer.innerHTML = "";
   resultContainer.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
   if (searchInput.value.trim() === "") {
@@ -169,4 +196,10 @@ recognition.onerror = (event) => {
 };
 
 btn.addEventListener("click", () => fetchGoogleData(searchInput.value.trim()));
+
+// ✅ Clear cache when clicking "New Chat"
+document.querySelector(".new-chat").addEventListener("click", () => {
+  localStorage.removeItem("googleCache"); // Clear cached data
+  location.reload();
+});
 

@@ -1,11 +1,29 @@
 const imgBtn = document.querySelector("#images");
 const imgApiKey = "ppkTR5GgzjzY0Tb7p1afq9sMUknWkSDHuGAOvebTPhU";
 
+// Load cache from localStorage when the page loads
+let imageCache = JSON.parse(localStorage.getItem("imageCache")) || {};
+
 async function fetchImageData(query) {
   if (query === "") {
     document.querySelector(".cards").style.display = "flex";
     resultContainer.innerHTML = "";
     resultContainer.style.boxShadow = "none";
+    return;
+  }
+
+  // Check cache first
+  if (imageCache[query]) {
+    console.log("Fetching from cache...");
+
+    imgBtn.addEventListener("click", () => {
+      allBtn.forEach((btn, idx) => {
+        btn.classList.toggle("selectedBtn", idx === 3);
+      });
+      displayImgData(result.results);
+    });
+
+    displayImgData(imageCache[query]);
     return;
   }
 
@@ -30,6 +48,10 @@ async function fetchImageData(query) {
 
     // Hide loader after fetching data
     loader.style.display = "none";
+
+    // Cache the result in memory and localStorage
+    imageCache[query] = result.results;
+    localStorage.setItem("imageCache", JSON.stringify(imageCache));
 
     imgBtn.addEventListener("click", () => {
       allBtn.forEach((btn, idx) => {
@@ -114,4 +136,10 @@ function downloadImage(url) {
 btn.addEventListener("click", () => {
   fetchImageData(searchInput.value.trim());
   fetchGoogleData(searchInput.value.trim());
+});
+
+// Clear cache when clicking "New Chat"
+document.querySelector(".new-chat").addEventListener("click", () => {
+  localStorage.removeItem("imageCache"); // Clear cached data
+  location.reload();
 });

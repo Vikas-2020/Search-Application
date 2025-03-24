@@ -1,10 +1,28 @@
 let wikiBtn = document.querySelector("#wiki");
 
+// Load cache from localStorage when the page loads
+let wikiCache = JSON.parse(localStorage.getItem("wikiCache")) || {};
+
 async function fetchWikipediaResults(query) {
   if (query === "") {
     document.querySelector(".cards").style.display = "flex";
     resultContainer.innerHTML = "";
     resultContainer.style.boxShadow = "none";
+    return;
+  }
+
+  // Check cache first
+  if (wikiCache[query]) {
+    console.log("Fetching from cache...");
+
+    wikiBtn.addEventListener("click", () => {
+      allBtn.forEach((btn, idx) => {
+        btn.classList.toggle("selectedBtn", idx === 1);
+      });
+      displayWikiData(resultData);
+    });
+
+    displayWikiData(wikiCache[query]);
     return;
   }
 
@@ -33,6 +51,11 @@ async function fetchWikipediaResults(query) {
 
     // Hide loader after fetching data
     loader.style.display = "none";
+
+    // Cache the result in memory and localStorage
+    wikiCache[query] = resultData;
+    localStorage.setItem("wikiCache", JSON.stringify(wikiCache));
+
 
     wikiBtn.addEventListener("click", () => {
       allBtn.forEach((btn, idx) => {
@@ -101,3 +124,9 @@ btn.addEventListener("click", () =>{
     fetchWikipediaResults(searchInput.value.trim());
     fetchGoogleData(searchInput.value.trim());
 })
+
+// Clear cache when clicking "New Chat"
+document.querySelector(".new-chat").addEventListener("click", () => {
+  localStorage.removeItem("wikiCache"); // Clear cached data
+  location.reload();
+});

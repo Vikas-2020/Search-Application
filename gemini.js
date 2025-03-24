@@ -5,11 +5,29 @@ const geminiBtn = document.querySelector("#gemini");
 const genAI = new GoogleGenerativeAI("AIzaSyAylt4BSpu8cvRrLt0us9FhhVhRVbaX6Ok");
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
+// Load cache from localStorage when the page loads
+let geminiCache = JSON.parse(localStorage.getItem("geminiCache")) || {};
+
 async function runGimini(query) {
   if (query === "") {
     document.querySelector(".cards").style.display = "flex";
     resultContainer.innerHTML = "";
     resultContainer.style.boxShadow = "none";
+    return;
+  }
+
+  // Check cache first
+  if (geminiCache[query]) {
+    console.log("Fetching from cache...");
+
+    geminiBtn.addEventListener("click", () => {
+      allBtn.forEach((btn, idx) => {
+        btn.classList.toggle("selectedBtn", idx === 2);
+      });
+      displayGeminiData(text);
+    });
+
+    displayGeminiData(geminiCache[query]);
     return;
   }
 
@@ -31,6 +49,10 @@ async function runGimini(query) {
 
     // Hide loader after fetching data
     loader.style.display = "none";
+
+    // Cache the result in memory and localStorage
+    geminiCache[query] = text;
+    localStorage.setItem("geminiCache", JSON.stringify(geminiCache));
 
     geminiBtn.addEventListener("click", () => {
       allBtn.forEach((btn, idx) => {
@@ -108,4 +130,10 @@ btn.addEventListener("click", () => {
 // Stop speech when the page refreshes
 window.addEventListener("load", () => {
   window.speechSynthesis.cancel();
+});
+
+// Clear cache when clicking "New Chat"
+document.querySelector(".new-chat").addEventListener("click", () => {
+  localStorage.removeItem("geminiCache"); // Clear cached data
+  location.reload();
 });
