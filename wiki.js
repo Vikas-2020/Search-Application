@@ -19,7 +19,7 @@ async function fetchWikipediaResults(query) {
       allBtn.forEach((btn, idx) => {
         btn.classList.toggle("selectedBtn", idx === 1);
       });
-      displayWikiData(resultData);
+      displayWikiData(wikiCache[query]);
     });
 
     displayWikiData(wikiCache[query]);

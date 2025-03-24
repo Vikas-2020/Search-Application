@@ -7,7 +7,7 @@ let loader = document.querySelector(".loader");
 let micInput = document.querySelector("#mic");
 let allBtn = document.querySelectorAll(".button-container .button");
 
-const apiKey = "AIzaSyB6WtUughJpJCifhnZNVNfi062J4BSw4EU";
+const apiKey = "AIzaSyCcNmVtgqC-Ldy_mtGYUzGTncQrk4yotTU";
 const cx = "d2328ac8ca7674c47";
 
 // Load cache from localStorage when the page loads
@@ -28,7 +28,7 @@ async function fetchGoogleData(query) {
       allBtn.forEach((btn, idx) => {
         btn.classList.toggle("selectedBtn", idx === 0);
       });
-      displayData(result.items);
+      displayData(googleCache[query]);
     });
     
     displayData(googleCache[query]);

@@ -20,7 +20,7 @@ async function fetchImageData(query) {
       allBtn.forEach((btn, idx) => {
         btn.classList.toggle("selectedBtn", idx === 3);
       });
-      displayImgData(result.results);
+      displayImgData(imageCache[query]);
     });
 
     displayImgData(imageCache[query]);
