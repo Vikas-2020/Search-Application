@@ -24,7 +24,7 @@ async function runGimini(query) {
       allBtn.forEach((btn, idx) => {
         btn.classList.toggle("selectedBtn", idx === 2);
       });
-      displayGeminiData(text);
+      displayGeminiData(geminiCache[query]);
     });
 
     displayGeminiData(geminiCache[query]);
