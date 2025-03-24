@@ -120,9 +120,9 @@ function displayWikiData(result){
     resultContainer.append(fragment);
 }
 
-btn.addEventListener("click", () =>{
+wikiBtn.addEventListener("click", () =>{
     fetchWikipediaResults(searchInput.value.trim());
-    fetchGoogleData(searchInput.value.trim());
+    // fetchGoogleData(searchInput.value.trim());
 })
 
 // Clear cache when clicking "New Chat"

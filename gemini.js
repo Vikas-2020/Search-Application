@@ -121,10 +121,10 @@ function toggleSpeech(speakerIcon, content) {
 }
 
 // Stop speech when starting a new search
-btn.addEventListener("click", () => {
+geminiBtn.addEventListener("click", () => {
   window.speechSynthesis.cancel(); // Stop speech before fetching new results
   runGimini(searchInput.value.trim());
-  fetchGoogleData(searchInput.value.trim());
+  // fetchGoogleData(searchInput.value.trim());
 });
 
 // Stop speech when the page refreshes
