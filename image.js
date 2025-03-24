@@ -135,7 +135,7 @@ function downloadImage(url) {
 
 imgBtn.addEventListener("click", () => {
   fetchImageData(searchInput.value.trim());
-  // fetchGoogleData(searchInput.value.trim());
+  window.speechSynthesis.cancel();
 });
 
 // Clear cache when clicking "New Chat"

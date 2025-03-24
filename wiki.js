@@ -122,7 +122,7 @@ function displayWikiData(result){
 
 wikiBtn.addEventListener("click", () =>{
     fetchWikipediaResults(searchInput.value.trim());
-    // fetchGoogleData(searchInput.value.trim());
+    window.speechSynthesis.cancel();
 })
 
 // Clear cache when clicking "New Chat"

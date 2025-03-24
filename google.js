@@ -20,8 +20,8 @@ async function fetchGoogleData(query) {
     return;
   }
 
-   // Check cache first
-   if (googleCache[query]) {
+  // Check cache first
+  if (googleCache[query]) {
     console.log("Fetching from cache...");
 
     googleBtn.addEventListener("click", () => {
@@ -30,7 +30,7 @@ async function fetchGoogleData(query) {
       });
       displayData(googleCache[query]);
     });
-    
+
     displayData(googleCache[query]);
     return;
   }
@@ -59,9 +59,9 @@ async function fetchGoogleData(query) {
     // Hide loader after fetching data
     loader.style.display = "none";
 
-     // Cache the result in memory and localStorage
-     googleCache[query] = result.items;
-     localStorage.setItem("googleCache", JSON.stringify(googleCache));
+    // Cache the result in memory and localStorage
+    googleCache[query] = result.items;
+    localStorage.setItem("googleCache", JSON.stringify(googleCache));
 
     googleBtn.addEventListener("click", () => {
       allBtn.forEach((btn, idx) => {
@@ -80,7 +80,7 @@ async function fetchGoogleData(query) {
 }
 
 function displayData(result) {
-  if(!Array.isArray(result)){
+  if (!Array.isArray(result)) {
     resultContainer.innerHTML = `<p class="head">Google result not availabe please try angain later.</p>`;
     return;
   }
@@ -95,7 +95,7 @@ function displayData(result) {
   googleHeading.classList.add("head");
   googleHeading.innerHTML = `Google search result for : ${searchInput.value.trim()}`;
   fragment.append(googleHeading);
-  
+
   result.forEach((data) => {
     let googleResultDiv = document.createElement("div");
     googleResultDiv.classList.add("google-search-container");
@@ -195,12 +195,17 @@ recognition.onerror = (event) => {
   console.error("Speech recognition error:", event.error);
 };
 
-btn.addEventListener("click", () => fetchGoogleData(searchInput.value.trim()));
-googleBtn.addEventListener("click", () => fetchGoogleData(searchInput.value.trim()));
+btn.addEventListener("click", () => {
+  fetchGoogleData(searchInput.value.trim());
+  window.speechSynthesis.cancel();
+});
+googleBtn.addEventListener("click", () => {
+  fetchGoogleData(searchInput.value.trim());
+  window.speechSynthesis.cancel();
+});
 
 // ✅ Clear cache when clicking "New Chat"
 document.querySelector(".new-chat").addEventListener("click", () => {
   localStorage.removeItem("googleCache"); // Clear cached data
   location.reload();
 });
-

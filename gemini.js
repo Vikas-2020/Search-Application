@@ -138,6 +138,3 @@ document.querySelector(".new-chat").addEventListener("click", () => {
   location.reload();
 });
 
-btn.addEventListener("click", () =>{
-  window.speechSynthesis.cancel();
-})
