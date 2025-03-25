@@ -443,6 +443,10 @@ pre {
     overflow-x: hidden;
 }
 
+.result-container>div {
+    word-break: break-all;
+}
+
 .result-container h3 {
     font-size: 22px;
     font-weight: 500;
@@ -734,7 +738,8 @@ pre {
         padding: 8px 12px;
         margin: 0px 5px;
     }
-    .image-grid{
+
+    .image-grid {
         grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
     }
 }
