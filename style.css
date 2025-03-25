@@ -7,7 +7,13 @@
 
 html {
     scroll-behavior: smooth;
-    zoom: 1; /* Ensure no forced zoom */
+    zoom: 1;
+    /* Ensure no forced zoom */
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 #wrapper {
@@ -167,9 +173,17 @@ html {
 }
 
 @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .main-container .cards {
@@ -628,16 +642,16 @@ pre {
     background: #ffaa00;
 }
 
-.data-div{
-    padding:1rem;
+.data-div {
+    padding: 1rem;
 }
 
 @media screen and (max-width:450px) {
-    .image-grid{
+    .image-grid {
         grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
     }
 }
-  
+
 
 @media screen and (max-width:1300px) {
     .main {
@@ -649,7 +663,8 @@ pre {
     .main {
         margin-left: 20%;
     }
-    .result-container{
+
+    .result-container {
         margin-right: 1rem;
     }
 }
@@ -664,6 +679,7 @@ pre {
     .main {
         margin-left: 30%;
     }
+
     .main-container .greet {
         font-size: 31px;
     }
@@ -681,7 +697,8 @@ pre {
     .main .nav p {
         margin-left: 0%;
     }
-    .result-container{
+
+    .result-container {
         margin-right: 0;
     }
 }
@@ -723,4 +740,3 @@ pre {
         margin: 0px 5px;
     }
 }
-
