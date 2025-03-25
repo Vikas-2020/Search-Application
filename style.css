@@ -236,7 +236,7 @@ html {
     border: none;
     outline: none;
     padding: 8px;
-    font-size: 16px;
+    font-size: 1rem;
 
 }
 
@@ -259,8 +259,8 @@ html {
 }
 
 .result {
-    overflow-y: scroll;
-    /* max-height: 70vh; */
+    overflow-y: auto;
+    max-height: 70vh;
     padding: 0px 5%;
 }
 
@@ -420,7 +420,7 @@ pre {
 
 .result-container {
     max-width: 850px;
-    padding: 20px 20px;
+    padding: 20px;
     margin: auto;
     margin-top: 2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -649,6 +649,9 @@ pre {
     .main {
         margin-left: 20%;
     }
+    .result-container{
+        margin-right: 1rem;
+    }
 }
 
 @media screen and (max-width:1000px) {
@@ -660,6 +663,9 @@ pre {
 @media screen and (max-width:850px) {
     .main {
         margin-left: 30%;
+    }
+    .main-container .greet {
+        font-size: 31px;
     }
 }
 
@@ -675,9 +681,16 @@ pre {
     .main .nav p {
         margin-left: 0%;
     }
+    .result-container{
+        margin-right: 0;
+    }
 }
 
 @media screen and (max-width:550px) {
+    .main-container .greet {
+        font-size: 30px;
+    }
+
     .result-container {
         padding: 10px;
     }
@@ -700,9 +713,6 @@ pre {
 }
 
 @media screen and (max-width:450px) {
-    .main-container .greet {
-        font-size: 32px;
-    }
 
     .main-bottom {
         padding: 0;
@@ -713,3 +723,4 @@ pre {
         margin: 0px 5px;
     }
 }
+
