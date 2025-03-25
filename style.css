@@ -440,7 +440,7 @@ pre {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
     margin-bottom: 0.5rem;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .result-container h3 {
@@ -647,12 +647,6 @@ pre {
     padding: 1rem;
 }
 
-@media screen and (max-width:450px) {
-    .image-grid {
-        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
-    }
-}
-
 
 @media screen and (max-width:1300px) {
     .main {
@@ -739,5 +733,8 @@ pre {
     .button {
         padding: 8px 12px;
         margin: 0px 5px;
+    }
+    .image-grid{
+        grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
     }
 }
